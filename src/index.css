@@ -11,3 +11,7 @@ body {
   color: #ffffff;
   font-family: 'Montserrat', sans-serif;
 }
+
+.showop {
+  opacity: 1;
+}
