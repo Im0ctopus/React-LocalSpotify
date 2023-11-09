@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import './Player.css'
-import { FaBackwardStep, FaForwardStep, FaPlay } from 'react-icons/fa6'
+import { FaBackwardStep, FaForwardStep, FaPlay, FaVolumeHigh, FaVolumeLow, FaVolumeXmark, FaPause } from 'react-icons/fa6'
 
 function Player() {
     const [music, setMusic] = useState(
@@ -8,35 +8,41 @@ function Player() {
             {
                 id: 0,
                 name: 'Flawlëss (feat. Lil Uzi Vert)',
+                artist: 'Yeat',
                 img: '/Musics/Flawlëss (feat. Lil Uzi Vert).jfif',
                 sound: '/Musics/Flawlëss (feat. Lil Uzi Vert).mp3'
             },
             {
                 name: 'Porsche Turbo',
+                artist: 'Lon3r Johny',
                 img: '/Musics/Porsche Turbo.jfif',
                 sound: '/Musics/Porsche Turbo.mp3'
             },
             {
                 id: 1,
                 name: 'Tá OK',
+                artist: 'DENNIS',
                 img: '/Musics/Tá OK.jfif',
                 sound: '/Musics/Tá OK.mp3'
             },
             {
                 id: 2,
                 name: 'Monëy so big',
+                artist: 'Yeat',
                 img: '/Musics/Monëy so big.jfif',
                 sound: '/Musics/Monëy so big.mp3'
             },
             {
                 id: 3,
                 name: 'Joga Essa Rabeta',
+                artist: 'MC Teuzin',
                 img: '/Musics/Joga Essa Rabeta.jfif',
                 sound: '/Musics/Joga Essa Rabeta.mp3'
             },
             {
                 id: 4,
                 name: 'Rock',
+                artist: 'Lon3r Johny',
                 img: '/Musics/Rock.jfif',
                 sound: '/Musics/Rock.mp3'
             },
@@ -49,7 +55,8 @@ function Player() {
     const [currentMusicDuration, setCurrentMusicDuration] = useState(0);
     const [currentMusicTime, setCurrentMusicTime] = useState(0);
     const [currentMusicPercent, setCurrentMusicPercent] = useState(0);
-    const [volume, setVolume] = useState(1);
+    const [volume, setVolume] = useState(0.8);
+    const [mute, setMute] = useState(false);
 
     useMemo(() => {
         currentMusic.preload = 'metadata';
@@ -62,7 +69,7 @@ function Player() {
         }
     }, [currentMusic]);
 
-    const timer = 500;
+    const timer = 100;
     useEffect(() => {
         const time = setInterval(() => {
             if (currentMusic.duration) setCurrentMusicDuration(currentMusic.duration);
@@ -117,22 +124,35 @@ function Player() {
     }
 
     function handleVolume(value) {
+        setMute(false)
         setVolume(value);
         currentMusic.volume = value;
     }
 
+    function handleMute() {
+        if (currentMusic.volume <= 0) {
+            setMute(false)
+            currentMusic.volume = volume;
+        } else {
+            setMute(true)
+            currentMusic.volume = 0;
+        }
+    }
+
     return (
         <main className="player">
-            <div className="player_img"></div>
+            <div className="player_img">
+                <img src={music[currentId].img} alt="" />
+            </div>
             <div className="player_name">
-                <p className="player_name_music"></p>
-                <p className="player_name_artist"></p>
+                <p className="player_name_music">{music[currentId].name}</p>
+                <p className="player_name_artist">{music[currentId].artist}</p>
             </div>
             <div className="player_controllers">
                 <div className="player_controller_buttons">
-                    <button onClick={handleBack}><FaBackwardStep /></button>
-                    <button onClick={handlePlay}><FaPlay /></button>
-                    <button onClick={handleNext}><FaForwardStep /></button>
+                    <a onClick={handleBack} className="player_controller_buttons_controller"><FaBackwardStep size={'20px'} /></a>
+                    <a onClick={handlePlay} className="player_controller_buttons_play">{isPlaying ? <FaPause color="black" style={{ marginLeft: '1px' }} size={'20px'} /> : <FaPlay color="black" style={{ marginLeft: '3px' }} size={'20px'} />}</a>
+                    <a onClick={handleNext} className="player_controller_buttons_controller"><FaForwardStep size={'20px'} /></a>
                 </div>
                 <div className="player_controller_slider">
                     <p className="player_controller_slider_time">{parseInt(currentMusicTime / 60)}:{parseInt(currentMusicTime % 60) < 10 ? '0' + parseInt(currentMusicTime % 60) : parseInt(currentMusicTime % 60)}</p>
@@ -146,11 +166,13 @@ function Player() {
                 </div>
             </div>
             <div className="player_sound">
-                <div className="player_sound_mute"></div>
+                <div className="player_sound_mute" onClick={handleMute}>
+                    {mute ? <FaVolumeXmark size={'15px'} /> : volume >= 0.5 ? <FaVolumeHigh size={'15px'} /> : <FaVolumeLow size={'15px'} />}
+                </div>
                 <div className="player_sound_bar">
-                    <div className="player_controller_slider_bar_total"></div>
-                    <div className="player_controller_slider_bar_current" style={{ width: `${(volume * 100)}%` }}></div>
-                    <div className={`player_controller_slider_bar_ball`} style={{ marginLeft: `${(volume * 100 - 15)}%` }}></div>
+                    <div className="player_controller_slider_bar_total" style={{ marginTop: '-3px' }}></div>
+                    <div className="player_controller_slider_bar_current" style={{ marginTop: '-3px', width: `${mute ? 0 : (volume * 100)}%` }}></div>
+                    <div className={`player_controller_slider_bar_ball`} style={{ marginTop: '-3px', marginLeft: `${mute ? 0 : (volume * 100 - 15)}%` }}></div>
                     <input type="range" onChange={(e) => handleVolume(e.target.value)} className="player_controller_slider_bar_input" step={0.01} value={volume} min={0} max={1} name="" id="" />
                 </div>
             </div>
