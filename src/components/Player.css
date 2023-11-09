@@ -99,6 +99,7 @@
 
 .player_img {
     width: 10%;
+    max-width: 100px;
 }
 
 .player_name {
