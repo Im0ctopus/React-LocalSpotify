@@ -128,7 +128,7 @@ function Player(musicRec) {
                 <div className="player_sound_bar">
                     <div className="player_controller_slider_bar_total" style={{ marginTop: '-3px' }}></div>
                     <div className="player_controller_slider_bar_current" style={{ marginTop: '-3px', width: `${mute ? 0 : (volume * 100)}%` }}></div>
-                    <div className={`player_controller_slider_bar_ball`} style={{ marginTop: '-3px', marginLeft: `${mute ? 0 : (volume * 100 - 15)}%` }}></div>
+                    <div className={`player_controller_slider_bar_ball `} style={{ marginTop: '-3px', marginLeft: `${mute ? 0 : (volume * 100 - 5)}%` }}></div>
                     <input type="range" onChange={(e) => handleVolume(e.target.value)} className="player_controller_slider_bar_input" step={0.01} value={volume} min={0} max={1} name="" id="" />
                 </div>
             </div>
