@@ -5,8 +5,8 @@ import { FaBackwardStep, FaForwardStep, FaPlay, FaVolumeHigh, FaVolumeLow, FaVol
 function Player(musicRec) {
     const music = musicRec.music;
 
-    const [currentId, setCurrentId] = useState(0);
-    const [currentMusic, setCurrentMusic] = useState(new Audio(music[currentId].sound));
+    const [currentId, setCurrentId] = useState(1);
+    const [currentMusic, setCurrentMusic] = useState(new Audio(music[0].sound));
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentMusicDuration, setCurrentMusicDuration] = useState(0);
     const [currentMusicTime, setCurrentMusicTime] = useState(0);
@@ -15,8 +15,11 @@ function Player(musicRec) {
     const [mute, setMute] = useState(false);
 
     useMemo(() => {
-        currentMusic.preload = 'metadata';
-    }, [currentMusic]);
+        console.log(currentId);
+        setCurrentId(0);
+        currentMusic.pause();
+        setCurrentMusic(new Audio(music[0].sound));
+    }, [music]);
 
     useEffect(() => {
         currentMusic.volume = volume;

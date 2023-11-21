@@ -1,0 +1,56 @@
+.sidebar {
+    background-color: inherit;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    height: 88%;
+    width: 70px;
+}
+
+.sidebar_top,
+.sidebar_bottom {
+    background-color: #121212;
+    border-radius: 7px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.icon:hover {
+    opacity: 1;
+}
+
+.sidebar_top {
+    padding: 15px;
+    gap: 20px;
+}
+
+.sidebar_bottom {
+    gap: 10px
+}
+
+.sidebar_bottom_playlist_img {
+    aspect-ratio: 1;
+    width: 100%;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.sidebar_bottom_playlist_img:hover {
+    transform: translate(0, -5px);
+}
