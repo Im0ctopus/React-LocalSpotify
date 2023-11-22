@@ -5,7 +5,7 @@ import { FaBackwardStep, FaForwardStep, FaPlay, FaVolumeHigh, FaVolumeLow, FaVol
 function Player(musicRec) {
     const music = musicRec.music;
 
-    const [currentId, setCurrentId] = useState(1);
+    const [currentId, setCurrentId] = useState(0);
     const [currentMusic, setCurrentMusic] = useState(new Audio(music[0].sound));
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentMusicDuration, setCurrentMusicDuration] = useState(0);
@@ -41,9 +41,9 @@ function Player(musicRec) {
         return () => clearInterval(time);
     }, [isPlaying, currentMusic])
 
-    useEffect(() => {
-        setCurrentMusic(new Audio(music[currentId].sound));
-    }, [currentId]);
+    function handleIdChange(value) {
+        setCurrentMusic(new Audio(music[value].sound));
+    }
 
     function handlePlay() {
         if (isPlaying) {
@@ -60,8 +60,10 @@ function Player(musicRec) {
             currentMusic.pause();
             if (currentId <= 0) {
                 setCurrentId((music.length - 1))
+                handleIdChange(music.length - 1);
             } else {
                 setCurrentId(currentId - 1);
+                handleIdChange(currentId - 1);
             }
         } else {
             currentMusic.currentTime = 0;
@@ -72,8 +74,10 @@ function Player(musicRec) {
         currentMusic.pause();
         if (currentId >= (music.length - 1)) {
             setCurrentId(0);
+            handleIdChange(0);
         } else {
             setCurrentId(currentId + 1);
+            handleIdChange(currentId + 1);
         }
     }
 
@@ -98,15 +102,23 @@ function Player(musicRec) {
         }
     }
 
+    function Info() {
+        return (
+            <>
+                <div className="player_img">
+                    <img src={music[currentId].img} alt="" />
+                </div>
+                <div className="player_name">
+                    <p className="player_name_music">{music[currentId].name}</p>
+                    <p className="player_name_artist">{music[currentId].artist}</p>
+                </div>
+            </>
+        )
+    }
+
     return (
         <main className="player">
-            <div className="player_img">
-                <img src={music[currentId].img} alt="" />
-            </div>
-            <div className="player_name">
-                <p className="player_name_music">{music[currentId].name}</p>
-                <p className="player_name_artist">{music[currentId].artist}</p>
-            </div>
+            <Info></Info>
             <div className="player_controllers">
                 <div className="player_controller_buttons">
                     <a onClick={handleBack} className="player_controller_buttons_controller"><FaBackwardStep size={'20px'} /></a>
