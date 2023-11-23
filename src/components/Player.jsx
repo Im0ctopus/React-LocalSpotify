@@ -15,7 +15,6 @@ function Player(musicRec) {
     const [mute, setMute] = useState(false);
 
     useMemo(() => {
-        console.log(currentId);
         setCurrentId(0);
         currentMusic.pause();
         setCurrentMusic(new Audio(music[0].sound));
