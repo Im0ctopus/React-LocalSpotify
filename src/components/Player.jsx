@@ -116,7 +116,7 @@ function Player(musicRec) {
     }
 
     return (
-        <main className="player">
+        <div className="player">
             <Info></Info>
             <div className="player_controllers">
                 <div className="player_controller_buttons">
@@ -146,7 +146,7 @@ function Player(musicRec) {
                     <input type="range" onChange={(e) => handleVolume(e.target.value)} className="player_controller_slider_bar_input" step={0.01} value={volume} min={0} max={1} name="" id="" />
                 </div>
             </div>
-        </main >
+        </ div>
     );
 }
 

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
 import Index from './pages/Index';
 import Player from './components/Player';
 import SideBar from './components/Sidebar';
+import Playlist from './pages/Playlist';
 
 function App() {
   const [currentPlaylist, setCurrentPlaylist] = useState(2);
@@ -121,9 +122,10 @@ function App() {
 
   return (
     <Router>
-      <SideBar playLists={playLists} setCurrentPlaylist={setCurrentPlaylist} />
+      <SideBar playLists={playLists} />
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/playlist/:id" element={<Playlist playLists={playLists} setCurrentPlaylist={setCurrentPlaylist} />} />
       </Routes>
       <Player music={music} />
     </Router>

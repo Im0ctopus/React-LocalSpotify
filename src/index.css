@@ -10,8 +10,20 @@ body {
   background-color: #000000;
   color: #ffffff;
   font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
 }
 
 .showop {
   opacity: 1;
+}
+
+main {
+  margin-left: 90px;
+  margin-right: 10px;
+  position: absolute;
+  height: 89%;
+  right: 0;
+  left: 0;
+  overflow: auto;
+  background-color: #121212;
 }
