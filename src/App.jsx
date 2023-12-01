@@ -5,6 +5,7 @@ import Index from './pages/Index';
 import Player from './components/Player';
 import SideBar from './components/Sidebar';
 import Playlist from './pages/Playlist';
+import Search from './pages/Search';
 
 function App() {
   const [currentPlaylist, setCurrentPlaylist] = useState(2);
@@ -127,6 +128,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/playlist/:id" element={<Playlist playLists={playLists} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
+        <Route path='/search' element={<Search playLists={playLists} />} />
+        <Route path='/search/:search' element={<Search playLists={playLists} />} />
       </Routes>
       <Player music={music} id={id} />
     </Router>

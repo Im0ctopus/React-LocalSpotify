@@ -11,7 +11,7 @@ function SideBar(params) {
                 <Link to='/' className="icon">
                     <GoHome color="white" size={'30px'} />
                 </Link>
-                <Link className="icon">
+                <Link to='/search' className="icon">
                     <GoSearch color="white" size={'30px'} />
                 </Link>
             </div>
