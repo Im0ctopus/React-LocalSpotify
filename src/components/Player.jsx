@@ -15,10 +15,10 @@ function Player(musicRec) {
     const [mute, setMute] = useState(false);
 
     useMemo(() => {
-        setCurrentId(0);
+        setCurrentId(musicRec.id);
         currentMusic.pause();
-        setCurrentMusic(new Audio(music[0].sound));
-    }, [music]);
+        setCurrentMusic(new Audio(music[musicRec.id].sound));
+    }, [music, musicRec.id]);
 
     useEffect(() => {
         currentMusic.volume = volume;

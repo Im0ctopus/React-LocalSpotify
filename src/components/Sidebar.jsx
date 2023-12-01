@@ -8,12 +8,12 @@ function SideBar(params) {
     return (
         <div className="sidebar">
             <div className="sidebar_top">
-                <a className="icon">
+                <Link to='/' className="icon">
                     <GoHome color="white" size={'30px'} />
-                </a>
-                <a className="icon">
+                </Link>
+                <Link className="icon">
                     <GoSearch color="white" size={'30px'} />
-                </a>
+                </Link>
             </div>
             <div className="sidebar_bottom">
                 {playlists.map((playlist, Index) => (

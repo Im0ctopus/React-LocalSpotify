@@ -27,3 +27,30 @@ main {
   overflow: auto;
   background-color: #121212;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  margin-right: 100px;
+  position: absolute;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888;
+  border-radius: 99px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: absolute;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff8e;
+  border-radius: 99px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}

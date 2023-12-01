@@ -115,6 +115,7 @@ function App() {
     }
   ]);
   const [music, setMusic] = useState(playLists[currentPlaylist].musics);
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     setMusic(playLists[currentPlaylist].musics);
@@ -125,9 +126,9 @@ function App() {
       <SideBar playLists={playLists} />
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/playlist/:id" element={<Playlist playLists={playLists} setCurrentPlaylist={setCurrentPlaylist} />} />
+        <Route path="/playlist/:id" element={<Playlist playLists={playLists} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
       </Routes>
-      <Player music={music} />
+      <Player music={music} id={id} />
     </Router>
   )
 }
