@@ -103,6 +103,7 @@
     justify-content: start;
     padding: 10px;
     border-radius: 9px;
+    position: relative;
 }
 
 .playlist_body_list_header {
@@ -167,4 +168,19 @@
 
 .playlist_body_list .music:hover {
     background-color: rgba(128, 128, 128, 0.295);
+}
+
+.playlist_body_list .music .trash_icon {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    right: 60px;
+    margin: auto 0;
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+.playlist_body_list .music .trash_icon:hover {
+    opacity: 1;
 }

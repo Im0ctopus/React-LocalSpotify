@@ -183,8 +183,8 @@ function App() {
       <SideBar playLists={playLists} />
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/playlist/:id" element={<Playlist playLists={playLists} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
-        <Route path='/search' element={<Search playLists={playLists} music={allMusic} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
+        <Route path="/playlist/:id" element={<Playlist playLists={playLists} setId={setId} setCurrentPlaylist={setCurrentPlaylist} setPlayLists={setPlayLists} />} />
+        <Route path='/search' element={<Search playLists={playLists} setPlayLists={setPlayLists} music={allMusic} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
         <Route path='/search/:search' element={<Search setPlayLists={setPlayLists} playLists={playLists} music={allMusic} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
       </Routes>
       <Player music={music} id={id} />

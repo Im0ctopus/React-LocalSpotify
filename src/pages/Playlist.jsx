@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { FaPlay, FaPause } from 'react-icons/fa6'
+import { FaPlay, FaPause, FaRegTrashCan } from 'react-icons/fa6'
 import { IoIosMore } from "react-icons/io";
 
 import './Playlist.css'
@@ -11,6 +11,12 @@ function Playlist(params) {
     function handlePlay(Index) {
         params.setCurrentPlaylist(id);
         params.setId(Index);
+    }
+    function handleRemove(Index) {
+        var temp = [...params.playLists];
+        temp[id].musics = temp[id].musics.filter(m => m.id != Index);
+        params.setPlayLists(temp);
+        console.log(temp);
     }
     return (
         <main className="playlist">
@@ -44,6 +50,7 @@ function Playlist(params) {
                                 <p className="title">{music.name}</p>
                                 <p className="artist">{music.artist}</p>
                             </div>
+                            <FaRegTrashCan className="trash_icon" onClick={() => handleRemove(music.id)} />
                         </div>
                     ))}
                 </div>
