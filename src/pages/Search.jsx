@@ -36,7 +36,7 @@ function Search(params) {
         }
     }
     function handleAdd(Index, Pindex) {
-        var temp = params.playLists;
+        var temp = [...params.playLists];
         temp[Pindex].musics = [...temp[Pindex].musics, all[Index]];
         params.setPlayLists(temp);
         handleSettings(-1);

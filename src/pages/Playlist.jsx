@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaPlay, FaPause, FaRegTrashCan } from 'react-icons/fa6'
 import { IoIosMore } from "react-icons/io";
 
@@ -7,6 +7,7 @@ import './Playlist.css'
 
 
 function Playlist(params) {
+    const navigate = useNavigate();
     let { id } = useParams();
     function handlePlay(Index) {
         params.setCurrentPlaylist(id);
@@ -14,15 +15,22 @@ function Playlist(params) {
     }
     function handleRemove(Index) {
         var temp = [...params.playLists];
+        console.log(temp[id].musics);
         temp[id].musics = temp[id].musics.filter(m => m.id != Index);
         params.setPlayLists(temp);
+    }
+    function handlePlDelete() {
+        var temp = [...params.playLists];
+        temp.splice(id, 1);
         console.log(temp);
+        params.setPlayLists(temp);
+        navigate(`/`)
     }
     return (
         <main className="playlist">
             <div className="playlist_header_bk"></div>
             <div className="playlist_header">
-                <img className="playlist_header_img" src={params.playLists[id].musics[0].img} alt="" />
+                {params.playLists[id].musics[0] ? <img className="playlist_header_img" src={params.playLists[id].musics[0].img} alt="" /> : <></>}
                 <div className="playlist_header_info">
                     <p className="playlist">Playlist</p>
                     <p className="title">{params.playLists[id].name}</p>
@@ -31,7 +39,7 @@ function Playlist(params) {
             <div className="playlist_body">
                 <div className="playlist_body_header">
                     <button className="play" onClick={() => params.setCurrentPlaylist(id)}><FaPlay size={'25px'} style={{ marginLeft: '3px' }} /></button>
-                    <button className="more" ><IoIosMore size={'30px'} /></button>
+                    <button className="more" onClick={handlePlDelete} ><FaRegTrashCan size={'20px'} /></button>
                 </div>
                 <div className="playlist_body_list">
                     <div className="playlist_body_list_header">
@@ -39,7 +47,7 @@ function Playlist(params) {
                         <p>Title</p>
                     </div>
                     <hr />
-                    {params.playLists[id].musics.map((music, Index) => (
+                    {params.playLists[id].musics ? params.playLists[id].musics.map((music, Index) => (
                         <div className="music" draggable key={Index}>
                             <div className="music_index">
                                 <p>{Index + 1}</p>
@@ -52,7 +60,7 @@ function Playlist(params) {
                             </div>
                             <FaRegTrashCan className="trash_icon" onClick={() => handleRemove(music.id)} />
                         </div>
-                    ))}
+                    )) : <></>}
                 </div>
             </div>
         </main>

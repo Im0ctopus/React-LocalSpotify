@@ -171,6 +171,15 @@ function App() {
       ]
     }
   ]);
+
+  useMemo(() => {
+    const temp = JSON.parse(localStorage.getItem('playlists'));
+    if (temp) setPlayLists(temp);
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('playlists', JSON.stringify(playLists));
+  }, [playLists]);
+
   const [music, setMusic] = useState(playLists[currentPlaylist].musics);
   const [id, setId] = useState(0);
 
@@ -180,7 +189,7 @@ function App() {
 
   return (
     <Router>
-      <SideBar playLists={playLists} />
+      <SideBar playLists={playLists} setPlayLists={setPlayLists} />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/playlist/:id" element={<Playlist playLists={playLists} setId={setId} setCurrentPlaylist={setCurrentPlaylist} setPlayLists={setPlayLists} />} />

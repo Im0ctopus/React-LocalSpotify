@@ -54,3 +54,115 @@
 .sidebar_bottom_playlist_img:hover {
     transform: translate(0, -5px);
 }
+
+.sidebar_bottom_playlist_icon {
+    font-size: 30px;
+    background-color: #292828;
+    aspect-ratio: 1;
+    width: 50px;
+    border-radius: 9px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s ease-in-out;
+}
+
+.sidebar_bottom_playlist_icon:hover {
+    transform: translate(0, -5px);
+}
+
+.sidebar_bottom_playlist_name {
+    font-size: 20px;
+    background-color: #292828;
+    aspect-ratio: 1;
+    width: 50px;
+    border-radius: 9px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s ease-in-out;
+    color: #ffffff;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.sidebar_bottom_playlist_name:hover {
+    transform: translate(0, -5px);
+}
+
+.sidebar_bottom_playlist {
+    text-decoration: none;
+}
+
+.create_background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: brightness(50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.create {
+    position: relative;
+    background-color: #292828;
+    padding: 50px;
+    border-radius: 12px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create_leave {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.create_leave:hover {
+    opacity: 1;
+}
+
+.create label {
+    opacity: 0.7;
+}
+
+.create input {
+    margin-top: -10px;
+    background-color: #ffffff27;
+    outline: none;
+    border-radius: 999px;
+    border: none;
+    font-size: 18px;
+    color: #ffffff;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.create button {
+    border: none;
+    background-color: #ffffff27;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 9px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.create button:hover {
+    opacity: 1;
+}
+
+.popupShow {
+    display: flex;
+}
