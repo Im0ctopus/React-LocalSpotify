@@ -17,7 +17,9 @@ function Player(musicRec) {
     useMemo(() => {
         setCurrentId(musicRec.id);
         currentMusic.pause();
-        setCurrentMusic(new Audio(music[musicRec.id].sound));
+        if (music[musicRec.id]) {
+            setCurrentMusic(new Audio(music[musicRec.id].sound));
+        };
     }, [music, musicRec.id]);
 
     useEffect(() => {
@@ -117,7 +119,7 @@ function Player(musicRec) {
 
     return (
         <div className="player">
-            <Info></Info>
+            {music[musicRec.id] ? <Info></Info> : <></>}
             <div className="player_controllers">
                 <div className="player_controller_buttons">
                     <a onClick={handleBack} className="player_controller_buttons_controller"><FaBackwardStep size={'20px'} /></a>
