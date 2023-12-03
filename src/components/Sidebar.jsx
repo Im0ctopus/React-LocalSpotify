@@ -29,12 +29,13 @@ function SideBar(params) {
                 </div>
                 <div className="sidebar_bottom">
                     {playlists.map((playlist, Index) => (
-                        <Link to={`/playlist/${Index}`} className="sidebar_bottom_playlist" key={Index}>
-                            {playlist.musics[0] ? <img className="sidebar_bottom_playlist_img" src={playlist.musics[0].img} alt="" /> : <p className="sidebar_bottom_playlist_name">
-                                {playlist.name}
-                            </p>}
+                        Index == 0 ? <></> :
+                            <Link to={`/playlist/${Index}`} className="sidebar_bottom_playlist" key={Index}>
+                                {playlist.musics[0] ? <img className="sidebar_bottom_playlist_img" src={playlist.musics[0].img} alt="" /> : <p className="sidebar_bottom_playlist_name">
+                                    {playlist.name}
+                                </p>}
 
-                        </Link>
+                            </Link>
                     ))}
                     <div onClick={() => setCreate(true)} className="sidebar_bottom_playlist">
                         <div className="sidebar_bottom_playlist_icon">

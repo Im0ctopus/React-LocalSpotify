@@ -6,6 +6,7 @@ import Player from './components/Player';
 import SideBar from './components/Sidebar';
 import Playlist from './pages/Playlist';
 import Search from './pages/Search';
+import NotFound from './pages/NotFound';
 
 function App() {
   const [currentPlaylist, setCurrentPlaylist] = useState(0);
@@ -195,6 +196,7 @@ function App() {
         <Route path="/playlist/:id" element={<Playlist playLists={playLists} setId={setId} setCurrentPlaylist={setCurrentPlaylist} setPlayLists={setPlayLists} />} />
         <Route path='/search' element={<Search playLists={playLists} setPlayLists={setPlayLists} music={allMusic} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
         <Route path='/search/:search' element={<Search setPlayLists={setPlayLists} playLists={playLists} music={allMusic} setId={setId} setCurrentPlaylist={setCurrentPlaylist} />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Player music={music} id={id} />
     </Router>

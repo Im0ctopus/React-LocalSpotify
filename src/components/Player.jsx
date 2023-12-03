@@ -14,6 +14,7 @@ function Player(musicRec) {
     const [volume, setVolume] = useState(0.8);
     const [mute, setMute] = useState(false);
 
+
     useMemo(() => {
         setCurrentId(musicRec.id);
         currentMusic.pause();
