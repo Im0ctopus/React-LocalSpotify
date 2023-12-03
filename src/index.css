@@ -26,6 +26,7 @@ main {
   left: 0;
   overflow: auto;
   background-color: #121212;
+  border-radius: 12px;
 }
 
 /* width */
